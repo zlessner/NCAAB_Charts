@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+import numpy as np
 from kenpompy.utils import login
 from kenpompy.summary import get_pointdist
 import pandas as pd
@@ -19,6 +21,8 @@ Off_3P = []
 Off_FTstr = []
 Team = []
 
+
+#Get point distribution data from KenPom
 for i in range(len(pd['Off-FT'])):
     try:
         Off_FT.append(float(pd['Off-FT'][i]))
@@ -28,18 +32,9 @@ for i in range(len(pd['Off-FT'])):
         Team.append(pd['Team'][i])
     except KeyError:
         continue
-
-
-
-# print(Off_FT)
-
-# libraries
-import matplotlib.pyplot as plt
-import numpy as np
  
-# create data
 
-
+# create variables
 x = Off_2P 
 y = Off_3P
 names = Team
@@ -53,7 +48,7 @@ plt.ylabel('Percentage of Team Points from Three Pointers')
 # plt.legend(loc="upper left")
 # plt.legend(
 #            labels  = ['Line', 'Sine', 'Arcsine'])
-plt.title(f'2020 NCAA Team Point Distribution as of {byDate}')
+plt.title(f'2020 NCAA Offensive Team Point Distribution as of {byDate}')
 sc = plt.scatter(x, y, s=z, alpha=.8, cmap='Reds', c=z, edgecolors="grey", linewidth=2)
 
 annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
@@ -61,6 +56,8 @@ annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
                     arrowprops=dict(arrowstyle="->"))
 annot.set_visible(False)
 
+
+#Set hover values
 def update_annot(ind):
 
     pos = sc.get_offsets()[ind["ind"][0]]
@@ -71,7 +68,7 @@ def update_annot(ind):
     annot.get_bbox_patch().set_facecolor(cmap(z[ind["ind"][0]]))
     annot.get_bbox_patch().set_alpha(0.8)
 
-
+#Set hover functionality
 def hover(event):
     vis = annot.get_visible()
     if event.inaxes == ax:
@@ -89,8 +86,5 @@ fig.canvas.mpl_connect("motion_notify_event", hover)
 
 plt.show()
 
-#search for team function in graph
-#legend for explaining size and color of circles
-#Save interactive graph
-#Click functionality to get team to stay
+
 

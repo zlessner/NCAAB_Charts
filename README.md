@@ -1,6 +1,6 @@
 # NCAAB Charts
 
-Cool NCAA basketball charts using data from [kenpom.com](kenpom.com).
+Cool NCAA basketball charts using data from [kenpom.com](https://kenpom.com/).
 
 ![Screenshot](Offense.png)
 
